@@ -22,33 +22,22 @@ class DisplayToDoViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let toDoViewController = segue.destination as! ToDoViewController
-        if let identifier = segue.identifier {
-            if identifier == "save" {
-                if let tasks = tasks {
-                    tasks.title = toDoTextField.text!
-                    tasks.description = toDoTextField.text!
-                    toDoViewController.tableView.reloadData()
-                } else {
-                    
-                    let newToDo = ToDo()
-                    
-                    newToDo.title = toDoTextField.text ?? ""
-                    newToDo.description = toDoTextView.text ?? ""
-                    
-                    let ToDoViewController = segue.destination as! ToDoViewController
-                    
-                    ToDoViewController.tasks.append(newToDo)
+            if segue.identifier == "save" {
+                let task = self.tasks ?? CoreDataHelper.newToDo()
+                    task.title = toDoTextField.text ?? ""
+                    task.content = toDoTextView.text ?? ""
+                    task.time = Date() as NSDate
+                    CoreDataHelper.saveToDo()
 
-                }}
+                }
         }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let tasks = tasks {
             toDoTextField.text = tasks.title
-            toDoTextView.text = tasks.description
+            toDoTextView.text = tasks.content
+            
         } else{
             toDoTextField.text = ""
             toDoTextView.text = ""

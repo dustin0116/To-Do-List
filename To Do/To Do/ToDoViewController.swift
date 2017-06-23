@@ -21,6 +21,7 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var tasks = [ToDo]() {
         didSet {
             tableView.reloadData()
+            tasks = CoreDataHelper.retrieveToDo()
         }
     }
 
@@ -38,6 +39,8 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.title.text = toDo.title
         
         cell.desc.text = toDo.description
+        
+        cell.time.text = toDo.time?.convertToString()
         
         return cell
     }
@@ -57,8 +60,9 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
     @IBAction func unwindToDoViewController(_sender: UIStoryboardSegue) {
-        
+        self.tasks = CoreDataHelper.retrieveToDo()
     }
 }
 
