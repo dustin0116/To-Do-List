@@ -76,7 +76,7 @@
                     <navigationItem key="navigationItem" title="To Do List" id="4fg-eK-Fdy">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="compose" id="XZ8-eb-Mmf">
                             <connections>
-                                <segue destination="pza-yB-3sq" kind="show" identifier="composeToDo" id="zKS-47-rUz"/>
+                                <segue destination="pza-yB-3sq" kind="show" identifier="compose" id="zKS-47-rUz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -91,7 +91,7 @@
         <!--Display To Do View Controller-->
         <scene sceneID="5HW-Ro-mLc">
             <objects>
-                <viewController id="pza-yB-3sq" userLabel="Display To Do View Controller" sceneMemberID="viewController">
+                <viewController id="pza-yB-3sq" userLabel="Display To Do View Controller" customClass="DisplayToDoViewController" customModule="To_Do" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kfh-Pl-7mS"/>
                         <viewControllerLayoutGuide type="bottom" id="vmz-pM-vdH"/>
@@ -100,22 +100,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKA-PK-kOC">
-                                <rect key="frame" x="16" y="135" width="343" height="512"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VWZ-Nc-tTY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VWZ-Nc-tTY" userLabel="Title">
                                 <rect key="frame" x="139" y="72" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="Ljk-MC-d5q"/>
                                 </constraints>
-                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKA-PK-kOC" userLabel="Description">
+                                <rect key="frame" x="16" y="135" width="343" height="512"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pza-yB-3sq" id="APj-Hq-6SK"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -127,7 +129,7 @@
                             <constraint firstItem="AKA-PK-kOC" firstAttribute="top" secondItem="VWZ-Nc-tTY" secondAttribute="bottom" constant="33" id="tDe-Bz-ax0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="a3T-cb-0O7">
+                    <navigationItem key="navigationItem" title="Edit To Do" id="a3T-cb-0O7">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="oHq-74-Kfq">
                             <connections>
                                 <segue destination="Peb-nQ-8ff" kind="unwind" identifier="cancel" unwindAction="unwindToDoViewControllerWith_sender:" id="q5N-9c-J1M"/>
@@ -139,6 +141,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="toDoTextField" destination="VWZ-Nc-tTY" id="UTH-dV-fU3"/>
+                        <outlet property="toDoTextView" destination="AKA-PK-kOC" id="2UI-4L-H3N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hY-jh-pHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Peb-nQ-8ff" userLabel="Exit" sceneMemberID="exit"/>
