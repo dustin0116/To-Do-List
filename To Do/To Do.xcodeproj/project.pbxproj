@@ -48,11 +48,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B43552721EFD811E001674F6 = {
+		067394D81F00CAD20025FCF9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				B46A6E161EFDDECB002F413E /* Date+convertToString.swift */,
-				B467559C1EFDCEB200595CF2 /* Helper */,
+			);
+			name = Extensions;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		067394D91F00CAF80025FCF9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B43552941EFD868C001674F6 /* ToDoTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B43552721EFD811E001674F6 = {
+			isa = PBXGroup;
+			children = (
 				B435527D1EFD811E001674F6 /* To Do */,
 				B435527C1EFD811E001674F6 /* Products */,
 				B46A6E131EFDDBF5002F413E /* Frameworks */,
@@ -70,10 +85,12 @@
 		B435527D1EFD811E001674F6 /* To Do */ = {
 			isa = PBXGroup;
 			children = (
-				B435527E1EFD811E001674F6 /* AppDelegate.swift */,
-				B43552851EFD811E001674F6 /* Assets.xcassets */,
+				B467559C1EFDCEB200595CF2 /* Helpers */,
+				067394D81F00CAD20025FCF9 /* Extensions */,
 				B442637C1EFDA87D002007F3 /* Controllers */,
-				B43552941EFD868C001674F6 /* ToDoTableViewCell.swift */,
+				067394D91F00CAF80025FCF9 /* Views */,
+				B43552851EFD811E001674F6 /* Assets.xcassets */,
+				B435527E1EFD811E001674F6 /* AppDelegate.swift */,
 				B43552821EFD811E001674F6 /* Main.storyboard */,
 				B43552871EFD811E001674F6 /* LaunchScreen.storyboard */,
 				B435528A1EFD811E001674F6 /* Info.plist */,
@@ -91,12 +108,13 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		B467559C1EFDCEB200595CF2 /* Helper */ = {
+		B467559C1EFDCEB200595CF2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				B467559A1EFDCEAD00595CF2 /* CoreDataHelper.swift */,
 			);
-			name = Helper;
+			name = Helpers;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B46A6E131EFDDBF5002F413E /* Frameworks */ = {

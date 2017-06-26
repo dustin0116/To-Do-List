@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DisplayToDoViewController: UIViewController {
     
@@ -28,7 +29,6 @@ class DisplayToDoViewController: UIViewController {
                     task.content = toDoTextView.text ?? ""
                     task.time = Date() as NSDate
                     CoreDataHelper.saveToDo()
-
                 }
         }
     

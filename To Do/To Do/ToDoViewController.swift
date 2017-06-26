@@ -14,14 +14,12 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        
-        // Do any additional setup after loading the view.
+        tasks = CoreDataHelper.retrieveToDo()
     }
     
     var tasks = [ToDo]() {
         didSet {
             tableView.reloadData()
-            tasks = CoreDataHelper.retrieveToDo()
         }
     }
 
@@ -32,14 +30,11 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "listToDoTableViewCell", for: indexPath) as! ToDoTableViewCell
-        
         let row = indexPath.row
         let toDo = tasks[row]
         
         cell.title.text = toDo.title
-        
-        cell.desc.text = toDo.description
-        
+        cell.desc.text = toDo.content
         cell.time.text = toDo.time?.convertToString()
         
         return cell
@@ -60,11 +55,18 @@ class ToDoViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //1
+            CoreDataHelper.delete(toDo: tasks[indexPath.row])
+            //2
+            tasks = CoreDataHelper.retrieveToDo()
+        }
+        
+    }
     
     @IBAction func unwindToDoViewController(_sender: UIStoryboardSegue) {
         self.tasks = CoreDataHelper.retrieveToDo()
     }
 }
-
-    
 
